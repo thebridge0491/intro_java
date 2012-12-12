@@ -2,7 +2,6 @@ package org.sandbox.intro_java.util;
 
 @org.junit.runner.RunWith(org.junit.runners.Suite.class)
 @org.junit.runners.Suite.SuiteClasses({NewTest.class})
-//@org.junit.runners.Suite.SuiteClasses({NewTest.class, ClassicTest.class})
 public class Ts_Main {
     public static void main(String[] args) {
         if (1 > args.length)

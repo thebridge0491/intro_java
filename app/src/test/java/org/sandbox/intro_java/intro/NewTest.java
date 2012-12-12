@@ -3,18 +3,14 @@ package org.sandbox.intro_java.intro;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.sandbox.intro_java.util.Library;
+
 public class NewTest {
 	//private float tolerance = 2.0f * Float.MIN_VALUE;
 	private float epsilon = 1.0e-7f;
 	
     public NewTest() {
     }
-    
-    public Boolean in_epsilon(Float tolerance, Float a, Float b) {
-		Float delta = Math.abs(tolerance);
-		//return (a - delta) <= b && (a + delta) >= b;
-		return !((a + delta) < b) && !((b + delta) < a);
-	}
 
     @org.junit.BeforeClass
     public static void setUpClass() throws Exception {
@@ -37,13 +33,13 @@ public class NewTest {
     @Test
     public void test_classExists() {
         try {
-            Class.forName(String.format("%s.Library",
+            Class.forName(String.format("%s.Intro",
                 this.getClass().getPackage().getName()));
         } catch(ClassNotFoundException exc) {
-            //fail("Class(es) not existent: " + Library.class.getName());
+            //fail("Class(es) not existent: " + Intro.class.getName());
             fail(String.format("%s %s", "Class(es) not existent:",
                 java.util.Arrays.toString(new String[]{
-                Library.class.getName()})));
+                Intro.class.getName()})));
         }
     }
     
@@ -53,7 +49,7 @@ public class NewTest {
     @Test
     public void test_dblMethod() {
 		//assertEquals(100.001f, 100.001f, epsilon);
-		assertTrue(in_epsilon(epsilon, 100.001f, 100.001f));
+		assertTrue(Library.in_epsilon(epsilon, 100.001f, 100.001f));
     }
     @Test
     public void test_strMethod() { assertEquals("Hello", "Hello");

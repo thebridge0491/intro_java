@@ -9,12 +9,6 @@ public class NewTest {
 	
     public NewTest() {
     }
-    
-    public Boolean in_epsilon(Float tolerance, Float a, Float b) {
-		Float delta = Math.abs(tolerance);
-		//return (a - delta) <= b && (a + delta) >= b;
-		return !((a + delta) < b) && !((b + delta) < a);
-	}
 
     @org.junit.BeforeClass
     public static void setUpClass() throws Exception {
@@ -53,7 +47,7 @@ public class NewTest {
     @Test
     public void test_dblMethod() {
 		//assertEquals(100.001f, 100.001f, epsilon);
-		assertTrue(in_epsilon(epsilon, 100.001f, 100.001f));
+		assertTrue(Library.in_epsilon(epsilon, 100.001f, 100.001f));
     }
     @Test
     public void test_strMethod() { assertEquals("Hello", "Hello");
