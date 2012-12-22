@@ -102,7 +102,7 @@ public class Main {
 	    	Integer[] ints_tmp = new Integer[ints.length];
 			for (int i = 0; ints.length > i; ++i)
 				ints_tmp[i] = ints[i];
-	    	Sequenceops.<Integer>reverse_lp(ints_tmp);
+	    	SequenceopsArray.<Integer>reverse_lp(ints_tmp);
 	    	String res1 = Library.<Integer>mkString(Arrays.asList(ints_tmp));
 	    	System.out.println(res1);
 	    	
@@ -126,6 +126,47 @@ public class Main {
 	    	String res1 = Library.<Integer>mkString(lst);
 	    	System.out.println(res1);
 	    }
+	    System.out.println(String.format("%0" + 40 + "d", 0).replace("0", 
+            "-"));
+	    int n_pascal = 5;
+	    int[][] pascal_arr = Classic.pascaltri_add(n_pascal);
+	    System.out.format("pascaltri_add(n:%d) : \n", n_pascal);
+	    Classic.printPascalTri(n_pascal, pascal_arr);
+	    
+	    System.out.println(String.format("%0" + 40 + "d", 0).replace("0", 
+            "-"));
+		int ndisks = 4;
+		int len_hanoi = (int)Math.pow(2.0f, ndisks) - 1;
+		int[][] hanoi_arr = ClassicPuzzles.hanoi(1, 2, 3, ndisks);
+		System.out.format("hanoi(src:1, dest:2, spare:3, ndisks:%d) : \n", 
+			ndisks);
+		for (int i = 0; len_hanoi > i; ++i)
+			System.out.format("move #%02d: move from %d to %d\n", i + 1,
+				hanoi_arr[i][0], hanoi_arr[i][1]);
+	    
+	    System.out.println(String.format("%0" + 40 + "d", 0).replace("0", 
+            "-"));
+		int numqueens = 8, queensNdx = (int)(50.0f * rnd.nextFloat());
+		int[] nqueens_arr = ClassicPuzzles.nqueens(queensNdx, numqueens);
+		
+		System.out.format("nqueens(ndx:%d, numqueens:%d) : \n", queensNdx,
+			numqueens);
+		System.out.print("{");
+		for (int r = 0; numqueens > r; ++r)
+			System.out.format("(%c, %d), ", 'a' + r, nqueens_arr[r]);
+		System.out.println("}");
+		
+		for (int r = 0; numqueens > r; ++r, System.out.println()) {
+			System.out.format("\'%d\'", numqueens - 1 - r);
+			for (int c = 0; numqueens > c; ++c)
+				System.out.format("\'%c\'", 
+					((numqueens - 1 - r) == nqueens_arr[c]) ? 'Q' : '.');
+		}
+		System.out.print("\' \'");
+		for (int c = 0; numqueens > c; ++c)
+			System.out.format("\'%c\'", 'a' + c);
+		System.out.print("\n\n");
+	    
 	    System.out.println(String.format("%0" + 40 + "d", 0).replace("0",
             "-"));
 	    
