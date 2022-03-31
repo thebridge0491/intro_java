@@ -1,7 +1,7 @@
 package org.sandbox.intro_java.util;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class NewTest {
 	//private float tolerance = 2.0f * Float.MIN_VALUE;
@@ -10,20 +10,20 @@ public class NewTest {
     public NewTest() {
     }
 
-    @org.junit.BeforeClass
+    @org.junit.jupiter.api.BeforeAll
     public static void setUpClass() throws Exception {
     	System.err.println("###setup TestCase###");
     }
-    @org.junit.AfterClass
+    @org.junit.jupiter.api.AfterAll
     public static void tearDownClass() throws Exception {
     	System.err.println("###teardown TestCase###");
     }
     
-    @org.junit.Before
+    @org.junit.jupiter.api.BeforeEach
     public void setUp() {
     	System.err.println("setup Test ...");
     }
-    @org.junit.After
+    @org.junit.jupiter.api.AfterEach
     public void tearDown() {
     	System.err.println("... teardown Test");
     }
@@ -52,17 +52,21 @@ public class NewTest {
     @Test
     public void test_strMethod() { assertEquals("Hello", "Hello");
     }
-    @Test(timeout = 1000)
+    @org.junit.jupiter.api.Timeout(value = 1000000,
+      unit = java.util.concurrent.TimeUnit.MILLISECONDS)
+    @Test
     public void test_timeoutMethod() { for (int i = 0; 1.0e6f > i; ++i);
     }
-    @org.junit.Ignore @Test
+    @org.junit.jupiter.api.Disabled @Test
     public void test_ignoredMethod() { assertEquals(5, 2 * 2);
     }
     @Test //(expected = AssertionError.class)
     public void test_failMethod() { fail();
     }
-    @Test(expected = IllegalArgumentException.class)
+    @Test //(expected = IllegalArgumentException.class)
     public void test_exceptionMethod() {
-        throw new IllegalArgumentException();
+        //throw new IllegalArgumentException();
+        assertThrows(IllegalArgumentException.class,
+          () -> { throw new IllegalArgumentException(); });
     }
 }

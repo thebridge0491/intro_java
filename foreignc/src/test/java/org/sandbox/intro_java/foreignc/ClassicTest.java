@@ -1,7 +1,7 @@
 package org.sandbox.intro_java.foreignc;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import java.lang.reflect.Array;
 
 import org.sandbox.intro_java.util.Library;
@@ -18,20 +18,20 @@ public class ClassicTest {
 	private interface IExpt { public float expt(float b, float n);
 	}
 
-    @org.junit.BeforeClass
+    @org.junit.jupiter.api.BeforeAll
     public static void setUpClass() throws Exception {
     	System.err.println("###setup TestCase###");
     }
-    @org.junit.AfterClass
+    @org.junit.jupiter.api.AfterAll
     public static void tearDownClass() throws Exception {
     	System.err.println("###teardown TestCase###");
     }
     
-    @org.junit.Before
+    @org.junit.jupiter.api.BeforeEach
     public void setUp() {
     	System.err.println("setup Test ...");
     }
-    @org.junit.After
+    @org.junit.jupiter.api.AfterEach
     public void tearDown() {
     	System.err.println("... teardown Test");
     }

@@ -28,8 +28,8 @@ public class SequenceopsArray {
 			Comparator<? super T> cmp) {
 		for (int i = 0; arr.length > i; ++i)
 			if (0 == cmp.compare(data, arr[i]))
-				return new Object[]{new Integer(i), arr[i]};
-		return new Object[]{new Integer(-1), null};
+				return new Object[]{Integer.valueOf(i), arr[i]};
+		return new Object[]{Integer.valueOf(-1), null};
 	}
 	
 	public static <T> int indexOf_lp(T data, T[] arr,

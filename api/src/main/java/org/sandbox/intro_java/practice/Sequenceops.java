@@ -30,8 +30,8 @@ public class Sequenceops {
 			Comparator<? super T> cmp) {
 		for (int i = 0; lst.size() > i; ++i)
 			if (0 == cmp.compare(data, lst.get(i)))
-				return new Object[]{new Integer(i), lst.get(i)};
-		return new Object[]{new Integer(-1), null};
+				return new Object[]{Integer.valueOf(i), lst.get(i)};
+		return new Object[]{Integer.valueOf(-1), null};
 	}
 	
 	public static <T> int indexOf_lp(T data, List<T> lst,

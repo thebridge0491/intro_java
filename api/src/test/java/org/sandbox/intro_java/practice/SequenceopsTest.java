@@ -1,8 +1,8 @@
 package org.sandbox.intro_java.practice;
 
 import java.util.*;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.sandbox.intro_java.util.Library;
 
@@ -97,20 +97,20 @@ public class SequenceopsTest {
 			public Integer op_2items(Integer a, Integer b) { return a + b; }
 	};
 
-    @org.junit.BeforeClass
+    @org.junit.jupiter.api.BeforeAll
     public static void setUpClass() throws Exception {
     	System.err.println("###setup TestCase###");
     }
-    @org.junit.AfterClass
+    @org.junit.jupiter.api.AfterAll
     public static void tearDownClass() throws Exception {
     	System.err.println("###teardown TestCase###");
     }
     
-    @org.junit.Before
+    @org.junit.jupiter.api.BeforeEach
     public void setUp() {
     	System.err.println("setup Test ...");
     }
-    @org.junit.After
+    @org.junit.jupiter.api.AfterEach
     public void tearDown() {
     	System.err.println("... teardown Test");
     }

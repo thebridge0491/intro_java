@@ -17,8 +17,8 @@ public interface IClassic_c extends com.sun.jna.Library {
 			System.getProperty("jna.library.path", 
 			System.getProperty("java.library.path", ".:/usr/local/lib")));
     }*/
-    public final static IClassic_c Classic = (IClassic_c) Native.loadLibrary(
-  		"intro_c-practice", IClassic_c.class);
+    public final static IClassic_c Classic = Native.load("intro_c-practice",
+  		IClassic_c.class);
     
     public long fact_i(long n);
     public long fact_lp(long n);

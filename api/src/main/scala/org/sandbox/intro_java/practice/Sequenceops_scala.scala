@@ -6,7 +6,7 @@ import java.util.Comparator
 import scala.collection.mutable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object Sequenceops_scala {
 	val pracLogger = LoggerFactory.getLogger("prac")

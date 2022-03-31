@@ -4,7 +4,7 @@ package org.sandbox.intro_java.intro {
  * Brief description. <p> */
 class User(var name: String, var num: Int = 5, var timeIn: Long = 0) {
     
-    def this() {
+    def this() = {
     	this("World")
     }
     
