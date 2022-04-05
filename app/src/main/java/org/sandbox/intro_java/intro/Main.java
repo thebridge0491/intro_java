@@ -30,6 +30,59 @@ public class Main {
 	private static final Logger rootLogger = LoggerFactory.getLogger(
 		Main.class.getName());
 	
+	private static java.util.Map<String, Object> deserialize_str(
+			String data_str, String fmt) {
+		java.util.Map<String, Object> blank_cfg = 
+			new java.util.HashMap<String, Object>();
+		blank_cfg.put("fmt", fmt);
+		switch (fmt) {
+			case "json":
+			case "yaml":
+				org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml();
+				//java.util.Map<String, Object> yamlmap = yaml.loadAs(
+				//	data_str, java.util.<String, Object>HashMap.class);
+				java.util.Map<String, Object> yamlmap = yaml.load(data_str);
+				blank_cfg.putAll(yamlmap);
+				break;
+			case "toml":
+				com.moandjiezana.toml.Toml toml = 
+					new com.moandjiezana.toml.Toml();
+				java.util.Map<String, Object> tomlmap = 
+					toml.read(data_str).toMap();
+				blank_cfg.putAll(tomlmap);
+				break;
+			/*case "json":
+				javax.json.JsonObject jsonobj = null;
+                javax.json.JsonReader rdr = null;
+                rdr = javax.json.Json.createReader(new java.io.StringReader(
+                    data_str));
+                jsonobj = rdr.readObject();
+                
+                java.util.Map<String, Object> jsonmap = 
+					new java.util.HashMap<String, Object>();
+				for (java.util.Map.Entry<String, javax.json.JsonValue> entryX: jsonobj.entrySet()) {
+					if (jsonobj.getClass() != entryX.getValue().getClass())
+						jsonmap.put(entryX.getKey(), entryX.getValue());
+					else {
+						javax.json.JsonObject jsonsub = (javax.json.JsonObject)entryX.getValue();
+						java.util.Map<String, Object> jsonsubmap = 
+							new java.util.HashMap<String, Object>();
+						for (java.util.Map.Entry<String, javax.json.JsonValue> entrySub: jsonsub.entrySet()) {
+							jsonsubmap.put(entrySub.getKey(), entrySub.getValue());
+						}
+						jsonmap.put(entryX.getKey(), jsonsubmap);
+					}
+				}
+				rdr.close();
+				blank_cfg.putAll(jsonmap);
+				break;*/
+			default:
+				System.err.println("Unknown fmt " + fmt);
+				//System.exit(1);
+		}
+		return blank_cfg;
+	}
+	
 	private static void run_intro(String progname, String rsrc_path,
             String name, int num, boolean is_expt2) {
 	    long timeIn_mSecs = System.currentTimeMillis();
@@ -254,40 +307,44 @@ public class Main {
     		ini_cfg.keySet().iterator().next());
     	
     	
-    	/*javax.json.JsonObject jsonobj = null;
-    	javax.json.JsonReader rdr = null;
+        /*java.util.Map<String, Object> json_cfg = null;
+        java.util.Map<String, Object> toml_cfg = null;
+        java.util.Map<String, Object> yaml_cfg = null;
         try {
-        	rdr = javax.json.Json.createReader(new java.io.FileReader(
-				rsrc_path + "/prac.json"));
-			jsonobj = rdr.readObject();
+        	json_cfg = deserialize_str(new String(new java.io.FileInputStream(
+                rsrc_path + "/prac.json").readAllBytes()), "json");
+            toml_cfg = deserialize_str(new String(new java.io.FileInputStream(
+                rsrc_path + "/prac.toml").readAllBytes()), "toml");
+            yaml_cfg = deserialize_str(new String(new java.io.FileInputStream(
+                rsrc_path + "/prac.yaml").readAllBytes()), "yaml");
         } catch (java.io.IOException exc0) {
-			rdr = javax.json.Json.createReader(
-				Main.class.getResourceAsStream("/prac.json"));
-			jsonobj = rdr.readObject();
-        } finally {
-			rdr.close();
-		}*/
-		
-		/*
-		org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml();
-		Map<String, Object> yamlmap = null;
-        try {
-        	yamlmap = yaml.loadAs(new java.io.FileReader(
-				rsrc_path + "/prac.yaml"),
-				java.util.<String, Object>HashMap.class);
-        } catch (java.io.IOException exc0) {
-			yamlmap = yaml.loadAs(Main.class.getResourceAsStream("/prac.yaml"),
-				java.util.<String, Object>HashMap.class);
-        }
-        */
+			try {
+				json_cfg = deserialize_str(new String(
+					Main.class.getResourceAsStream("/prac.json"
+					).readAllBytes()), "json");
+				toml_cfg = deserialize_str(new String(
+					Main.class.getResourceAsStream("/prac.toml"
+					).readAllBytes()), "toml");
+				yaml_cfg = deserialize_str(new String(
+					Main.class.getResourceAsStream("/prac.yaml"
+					).readAllBytes()), "yaml");
+			} catch (java.io.IOException exc1) {
+				System.err.println("Error: " + exc1);
+			}
+        }*/
     	
+    	@SuppressWarnings("unchecked")
     	String[][] tup_arr = {
 			{ini_cfg.toString(), ini_cfg.get("default").get("domain"),
 				ini_cfg.get("user1").get("name")},
-			/*{yamlmap.toString(), (String)yamlmap.get("domain"),
-				(String)((Map<String, Object>)yamlmap.get("user1")).get("name")},
-			{jsonobj.toString(), jsonobj.getString("domain"),
-				jsonobj.getJsonObject("user1").getString("name")}*/
+			/*{json_cfg.toString(), ((javax.json.JsonString)json_cfg.get("domain")).toString(),
+				((javax.json.JsonString)((Map<String, Object>)json_cfg.get("user1")).get("name")).toString()},*/
+			/*{json_cfg.toString(), (String)json_cfg.get("domain"),
+				(String)((Map<String, Object>)json_cfg.get("user1")).get("name")},
+			{toml_cfg.toString(), (String)toml_cfg.get("domain"),
+				(String)((Map<String, Object>)toml_cfg.get("user1")).get("name")},
+			{yaml_cfg.toString(), (String)yaml_cfg.get("domain"),
+				(String)((Map<String, Object>)yaml_cfg.get("user1")).get("name")}*/
 		};
 		
     	for (int i = 0; tup_arr.length > i; ++i) {
