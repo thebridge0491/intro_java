@@ -3,24 +3,23 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
-
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import java.lang.reflect.Array;
 
 public class ClassicTest {
 	//private float tolerance = 2.0f * Float.MIN_VALUE;
 	private float epsilon = 1.0e-7f;
-	
+
     public ClassicTest() {
     }
-    
+
     public Boolean in_epsilon(Float tolerance, Float a, Float b) {
 		Float delta = Math.abs(tolerance);
 		//return (a - delta) <= b && (a + delta) >= b;
 		return !((a + delta) < b) && !((b + delta) < a);
 	}
-	
+
 	public <T> T[][] cartesian_prod(T[] arr1, T[] arr2) {
 		@SuppressWarnings("unchecked")
 		T[][] new_arr = (T[][]) Array.newInstance(
@@ -34,30 +33,30 @@ public class ClassicTest {
 			}
 		return new_arr;
 	}
-	
+
 	private interface IFact { public long factorial(long n);
 	}
 	private interface IExpt { public float expt(float b, float n);
 	}
 
-    @org.junit.BeforeClass
+    @org.junit.jupiter.api.BeforeAll
     public static void setUpClass() throws Exception {
     	System.err.println("${symbol_pound}${symbol_pound}${symbol_pound}setup TestCase${symbol_pound}${symbol_pound}${symbol_pound}");
     }
-    @org.junit.AfterClass
+    @org.junit.jupiter.api.AfterAll
     public static void tearDownClass() throws Exception {
     	System.err.println("${symbol_pound}${symbol_pound}${symbol_pound}teardown TestCase${symbol_pound}${symbol_pound}${symbol_pound}");
     }
-    
-    @org.junit.Before
+
+    @org.junit.jupiter.api.BeforeEach
     public void setUp() {
     	System.err.println("setup Test ...");
     }
-    @org.junit.After
+    @org.junit.jupiter.api.AfterEach
     public void tearDown() {
     	System.err.println("... teardown Test");
     }
-	
+
     @Test
     public void test_fact() {
         IFact[] funcs = {
@@ -79,7 +78,7 @@ public class ClassicTest {
         };
         Float[] param1 = {2.0f, 11.0f, 20.0f}, param2 = {3.0f, 6.0f, 10.0f};
         Float[][] prod_params = cartesian_prod(param1, param2);
-        
+
         for (IExpt f : funcs) {
         	for (int j = 0; prod_params.length > j; ++j) {
         		double exp = Math.pow(prod_params[j][0], prod_params[j][1]);

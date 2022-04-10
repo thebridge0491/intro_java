@@ -6,11 +6,11 @@ package ${package} {
 /** DocComment:
  * Brief description. <p> */
 class User(var name: String, var num: Int = 5, var timeIn: Long = 0) {
-    
-    def this() {
+
+    def this() = {
     	this("World")
     }
-    
+
     private def equalObjects(other: User): Boolean = {
         ((this.name.equals(other.name) || this.name == other.name) &&
             this.num == other.num && this.timeIn == other.timeIn //&&
@@ -19,13 +19,13 @@ class User(var name: String, var num: Int = 5, var timeIn: Long = 0) {
             //Arrays.equals(this.intArr, other.intArr)
         )
     }
-    
+
     override
     def equals(obj: Any): Boolean = obj match {
         case that: User => that.isInstanceOf[User] && equalObjects(that)
         case _ => false
     }
-    
+
     override
     def hashCode(): Int = {
         val (primeMul, primeAdd) = (31, 17)
@@ -37,7 +37,7 @@ class User(var name: String, var num: Int = 5, var timeIn: Long = 0) {
             primeAdd + this.num + this.timeIn.asInstanceOf[Int]) +
         primeAdd + (if (null != this.name) this.name.hashCode() else 0)
     }
-    
+
     override
     def toString(): String = {
         "%s{name=%s, num=%d, timeIn=%d}".format(this.getClass().getSimpleName(),

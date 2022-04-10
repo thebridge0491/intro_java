@@ -6,7 +6,7 @@
 #        sh vcs_bkup.sh changed_files_archive [namePrefix [revID]]
 
 project=${project:-intro}
-lang_suf=${lang_suf:-_java}
+lang_suf=${lang_suf:-_scala}
 
 bundle_revsets() {
 	revsets=${@:-'--all'}

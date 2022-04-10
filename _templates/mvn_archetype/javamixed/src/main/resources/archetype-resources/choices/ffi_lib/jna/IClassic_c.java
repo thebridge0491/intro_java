@@ -13,19 +13,19 @@ public interface IClassic_c extends com.sun.jna.Library {
     // or
 	/* // -D[java | jna].library.path=".:/usr/local/lib"
 	static { // inside class file
-        //for (String pathX : System.getProperty("java.library.path", 
+        //for (String pathX : System.getProperty("java.library.path",
         // 		".:/usr/local/lib").split(":"))
 		//	com.sun.jna.NativeLibrary.addSearchPath("intro_c-practice", pathX);
-		System.setProperty("jna.library.path", 
-			System.getProperty("jna.library.path", 
+		System.setProperty("jna.library.path",
+			System.getProperty("jna.library.path",
 			System.getProperty("java.library.path", ".:/usr/local/lib")));
     }*/
-    public final static IClassic_c Classic = (IClassic_c) Native.loadLibrary(
-  		"intro_c-practice", IClassic_c.class);
-    
+    public final static IClassic_c Classic = Native.load("intro_c-practice",
+  		IClassic_c.class);
+
     public long fact_i(long n);
     public long fact_lp(long n);
-    
+
     public float expt_i(float b, float n);
     public float expt_lp(float b, float n);
 }

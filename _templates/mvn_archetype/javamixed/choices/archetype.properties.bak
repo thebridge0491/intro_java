@@ -3,16 +3,16 @@
 
 # cp pom.xml src/main/resources/ ; mvn install
 
-parent=intro_java
-parentdescription=Parent description for multi-package project mixed Java.
+parent=intro_jvm
+parentdescription=Parent description for multi-package project mixed JVM language.
 name=javamixed
-description=A Maven archetype template for mixed Java project.
+description=A Maven archetype template for mixed JVM language project.
 
 repohost=bitbucket.org
 repoacct=imrepoid
 author=imcomputer
 email=imemail-codelab@yahoo.com
-date=2012-12-10
+date=2012-08-20
 
 #archetype.groupId=org.sandbox
 #archetype.artifactId=javamixed-archetype
@@ -23,6 +23,6 @@ archetype.filteredExtensions=scala,java,i,rst,md,adoc,txt,xml,bak,mk
 # example usage of archetype:
 #   cd <path> ; mvn archetype:generate [-DinteractiveMode=false]
 #     -DarchetypeCatalog=local -DarchetypeGroupId=org.sandbox
-#     -DarchetypeArtifactId=javamixed-archetype -Ddate=2012-12-10
-#     -DgroupId=org.sandbox -Dparent=intro_java -Dname=util -Dversion=0.1.0
+#     -DarchetypeArtifactId=javamixed-archetype -Ddate=2012-08-20
+#     -DgroupId=org.sandbox -Dparent=intro_jvm -Dname=util -Dversion=0.1.0
 #     [-DtestFrwk=junit -DffiLib=none -Dexecutable=no]
