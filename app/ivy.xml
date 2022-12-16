@@ -96,6 +96,6 @@
     <exclude org = 'net.java.dev.jna' module = 'jna'/>
     <!--<exclude org = 'javax.json' module = 'javax.json-api'/>
     <exclude org = 'org.glassfish' module = 'javax.json'/>
-    <exclude org = 'org.yaml' module = 'snakeyaml'/>-->
+    <exclude org = 'org.snakeyaml' module = 'snakeyaml-engine'/>-->
   </dependencies>
 </ivy-module>

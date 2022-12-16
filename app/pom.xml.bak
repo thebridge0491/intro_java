@@ -163,8 +163,8 @@
       <artifactId>javax.json-api</artifactId> </dependency>
     <dependency> <groupId>org.glassfish</groupId>
       <artifactId>javax.json</artifactId> </dependency>
-    <dependency> <groupId>org.yaml</groupId>
-      <artifactId>snakeyaml</artifactId> </dependency>
+    <dependency> <groupId>org.snakeyaml</groupId>
+      <artifactId>snakeyaml-engine</artifactId> </dependency>
   </dependencies>
   
   <build>

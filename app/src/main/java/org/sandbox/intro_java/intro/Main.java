@@ -38,10 +38,12 @@ public class Main {
 		switch (fmt) {
 			case "json":
 			case "yaml":
-				org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml();
-				//java.util.Map<String, Object> yamlmap = yaml.loadAs(
-				//	data_str, java.util.<String, Object>HashMap.class);
-				java.util.Map<String, Object> yamlmap = yaml.load(data_str);
+				org.snakeyaml.engine.v2.api.LoadSettings settings = 
+				    org.snakeyaml.engine.v2.api.LoadSettings.builder().build();
+				org.snakeyaml.engine.v2.api.Load yaml = 
+				    new org.snakeyaml.engine.v2.api.Load(settings);
+				java.util.Map<String, Object> yamlmap =
+				    (java.util.Map<String, Object>)yaml.loadFromString(data_str);
 				blank_cfg.putAll(yamlmap);
 				break;
 			case "toml":
